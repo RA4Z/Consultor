@@ -13,5 +13,6 @@ public class EntregaDTO {
     Long id;
     PessoaDTO pessoa;
     DestinatarioDTO destinatario;
+    String status;
 
 }

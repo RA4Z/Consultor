@@ -34,6 +34,9 @@ public class Entrega {
     @Embedded
     private Destinatario destinatario;
 
+    @Column(name = "card_status")
+    private String status;
+
     @OneToMany(mappedBy = "entrega", cascade = CascadeType.ALL)
     private List<Ocorrencia> ocorrencias = new ArrayList<>();
 

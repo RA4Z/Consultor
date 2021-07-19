@@ -43,6 +43,11 @@ public class EntregaController {
         return solicitacaoEntregaService.listar();
     }
 
+    @GetMapping("/filtro/{status}")
+    public List<EntregaDTO> filtroStatus(@PathVariable String status) {
+        return solicitacaoEntregaService.filtroStatus(status);
+    }
+
     @GetMapping("/{entregaId}")
     public ResponseEntity<EntregaDTO> buscar(@PathVariable Long entregaId) {
         return solicitacaoEntregaService.buscar(entregaId);

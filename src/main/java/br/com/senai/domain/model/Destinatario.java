@@ -21,9 +21,6 @@ public class Destinatario {
     @Column(name = "card_nome")
     String nome;
 
-    @Column(name = "card_status")
-    String status;
-
     @Column(name = "card_datainicio")
     String dataInicio;
 

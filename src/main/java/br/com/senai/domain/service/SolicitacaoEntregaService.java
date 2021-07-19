@@ -4,13 +4,11 @@ import br.com.senai.api.assembler.EntregaAssembler;
 import br.com.senai.api.model.EntregaDTO;
 import br.com.senai.domain.model.Entrega;
 import br.com.senai.domain.model.Pessoa;
-import br.com.senai.domain.model.StatusEntrega;
 import br.com.senai.domain.repository.EntregaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -29,6 +27,10 @@ public class SolicitacaoEntregaService {
     }
     public List<EntregaDTO> listar() {
         return entregaAssembler.toCollectionModel(entregaRepository.findAll());
+    }
+
+    public List<EntregaDTO> filtroStatus(String status) {
+        return entregaAssembler.toCollectionModel(entregaRepository.findByStatus(status));
     }
 
     public ResponseEntity<EntregaDTO> buscar(Long entregaId) {

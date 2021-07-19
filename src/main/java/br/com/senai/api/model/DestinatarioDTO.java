@@ -12,7 +12,6 @@ public class DestinatarioDTO {
 
     String secao;
     String nome;
-    String status;
     String dataInicio;
     String dataEstimada;
     int horas;
