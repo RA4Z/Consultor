@@ -18,8 +18,6 @@ public class EntregaService{
     public void finalizar(Long entregaId){
         Entrega entrega = buscaEntrega(entregaId);
 
-        entrega.finalizar();
-
         entregaRepository.save(entrega);
     }
 

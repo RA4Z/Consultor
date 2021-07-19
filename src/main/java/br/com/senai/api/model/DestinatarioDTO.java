@@ -10,9 +10,10 @@ import lombok.experimental.FieldDefaults;
 @Setter
 public class DestinatarioDTO {
 
+    String secao;
     String nome;
-    String logradouro;
-    String numero;
-    String complemento;
-    String bairro;
+    String status;
+    String dataInicio;
+    String dataEstimada;
+    int horas;
 }

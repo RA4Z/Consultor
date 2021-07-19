@@ -9,6 +9,6 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class OcorrenciaInputDTO {
 
-    @NotBlank
-    private String descricao;
+    private String dataRegistro;
+    private int horas;
 }

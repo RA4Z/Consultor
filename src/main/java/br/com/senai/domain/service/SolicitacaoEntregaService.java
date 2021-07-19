@@ -25,9 +25,6 @@ public class SolicitacaoEntregaService {
         Pessoa pessoa = pessoaService.buscar(entrega.getPessoa().getId());
         entrega.setPessoa(pessoa);
 
-        entrega.setStatus(StatusEntrega.PENDENTE);
-        entrega.setDataPedido(LocalDateTime.now());
-
         return entregaRepository.save(entrega);
     }
     public List<EntregaDTO> listar() {

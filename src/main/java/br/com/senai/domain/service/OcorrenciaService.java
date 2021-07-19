@@ -13,9 +13,9 @@ public class OcorrenciaService {
     private EntregaService entregaService;
 
     @Transactional
-    public Ocorrencia registrar(Long entregaId, String descricao){
+    public Ocorrencia registrar(Long entregaId, int horas, String dataRegistro){
         Entrega entrega = entregaService.buscaEntrega(entregaId);
 
-        return entrega.adicionarOcorrencia(descricao);
+        return entrega.adicionarOcorrencia(horas, dataRegistro);
     }
 }

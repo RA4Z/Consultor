@@ -15,18 +15,21 @@ import javax.persistence.Embedded;
 @Embeddable
 public class Destinatario {
 
-    @Column(name = "destinatario_nome")
+    @Column(name = "card_secao")
+    String secao;
+
+    @Column(name = "card_nome")
     String nome;
 
-    @Column(name = "destinatario_logradouro")
-    String logradouro;
+    @Column(name = "card_status")
+    String status;
 
-    @Column(name = "destinatario_numero")
-    String numero;
+    @Column(name = "card_datainicio")
+    String dataInicio;
 
-    @Column(name = "destinatario_complemento")
-    String complemento;
+    @Column(name = "card_dataestimada")
+    String dataEstimada;
 
-    @Column(name = "destinatario_bairro")
-    String bairro;
+    @Column(name = "card_horas")
+    int horas;
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -18,8 +17,8 @@ public class Ocorrencia {
     @ManyToOne
     private Entrega entrega;
 
-    private String descricao;
+    private int horas;
 
-    private LocalDateTime dataRegistro;
+    private String dataRegistro;
 
 }

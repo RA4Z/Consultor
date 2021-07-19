@@ -26,8 +26,8 @@ public class OcorrenciaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OcorrenciaDTO registrar(@PathVariable Long entregaId, @Valid @RequestBody OcorrenciaInputDTO ocorrenciaInputDTO){
-        Ocorrencia ocorrenciaRegistrada = ocorrenciaService.registrar(entregaId, ocorrenciaInputDTO.getDescricao());
-
+        Ocorrencia ocorrenciaRegistrada = ocorrenciaService.registrar(entregaId, ocorrenciaInputDTO.getHoras(),
+                ocorrenciaInputDTO.getDataRegistro());
         return ocorrenciaAssembler.toModel(ocorrenciaRegistrada);
     }
 

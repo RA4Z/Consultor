@@ -29,11 +29,6 @@ public class Pessoa{
     @Size(max = 60)
     String nome;
 
-//    @NotBlank
-//    @Email
-//    @Size(min = 5)
-//    String email;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id")
     Usuario usuario;

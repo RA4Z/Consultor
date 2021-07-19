@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class OcorrenciaDTO {
 
     private Long id;
-    private String descricao;
-    private LocalDateTime dataRegistro;
+    private int horas;
+    private String dataRegistro;
 
 }

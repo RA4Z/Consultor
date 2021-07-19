@@ -25,11 +25,6 @@ public class PessoaService {
 
     @Transactional
     public Pessoa cadastrar(Pessoa pessoa){
-//        boolean emailValidation = pessoaRepository.findByEmail(pessoa.getEmail()).isPresent();
-//
-//        if (emailValidation){
-//            throw new NegocioException("Ja existe uma pessoa com esse e-mail cadastrado");
-//        }
 
         return pessoaRepository.save(pessoa);
     }

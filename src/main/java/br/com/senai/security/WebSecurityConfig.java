@@ -20,28 +20,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private ImplementsUserDetailsService implementsUserDetailsService;
-    private JWTRequestFilter jwtRequestFilter;
-
-    private static final String[] AUTH_LIST = {
-            "/",
-            "/pessoas",
-            "/pessoas/{pessoaId}",
-            "/pessoas/nome/{pessoaNome}",
-            "/pessoas/nome/containing/{pessoaNome}",
-            "/pessoas/role/{roleId}"
-    };
+    private final ImplementsUserDetailsService implementsUserDetailsService;
+    private final JWTRequestFilter jwtRequestFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/entregas").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/cards").hasRole("CONSULTOR")
+                .antMatchers(HttpMethod.PUT, "/cards/{cardId}").hasRole("CONSULTOR")
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()
-                .antMatchers(HttpMethod.POST, AUTH_LIST).permitAll()
-                .antMatchers(HttpMethod.PUT, AUTH_LIST).permitAll()
-                .antMatchers(HttpMethod.DELETE, AUTH_LIST).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().logout()
@@ -58,9 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("RAZ").password("{noop}123456")
-//                .roles("ADMIN");
+                auth.inMemoryAuthentication()
+                .withUser("ADMIN").password("{noop}123456")
+                .roles("CONSULTOR");
         auth.userDetailsService(implementsUserDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
@@ -69,4 +57,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/botstrap/**", "style/**");
     }
+
 }
