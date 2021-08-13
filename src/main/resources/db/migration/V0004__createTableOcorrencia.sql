@@ -1,10 +1,10 @@
-CREATE TABLE ocorrencia(
+CREATE TABLE apontamento(
     id bigint not null auto_increment,
-    entrega_id bigint not null,
+    cards_id bigint not null,
     horas int not null,
     data_registro text not null,
     primary key (id)
 );
 
-ALTER TABLE ocorrencia ADD CONSTRAINT fk_ocorrencia_entrega
-FOREIGN KEY (entrega_id) REFERENCES entrega (id);
+ALTER TABLE apontamento ADD CONSTRAINT fk_apontamento_cards
+FOREIGN KEY (cards_id) REFERENCES cards (id);
