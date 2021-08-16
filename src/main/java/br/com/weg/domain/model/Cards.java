@@ -29,10 +29,20 @@ public class Cards {
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
-    @Valid
-    @NotNull
-    @Embedded
-    private Info info;
+    @Column(name = "card_secao")
+    String secao;
+
+    @Column(name = "card_nome")
+    String nome;
+
+    @Column(name = "card_datainicio")
+    String dataInicio;
+
+    @Column(name = "card_dataestimada")
+    String dataEstimada;
+
+    @Column(name = "card_horas")
+    int horas;
 
     @Column(name = "card_status")
     private String status;
@@ -47,7 +57,7 @@ public class Cards {
         apontamento.setDataRegistro(dataRegistro);
         apontamento.setCards(this);
 
-        info.setHoras(info.getHoras()+horas);
+        this.setHoras(this.getHoras()+horas);
 
         this.getApontamentos().add(apontamento);
 

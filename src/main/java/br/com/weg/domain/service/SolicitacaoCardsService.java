@@ -33,6 +33,10 @@ public class SolicitacaoCardsService {
         return cardsAssembler.toCollectionModel(cardsRepository.findByStatus(status));
     }
 
+    public List<CardsDTO> filtroNome(String nome) {
+        return cardsAssembler.toCollectionModel(cardsRepository.findByNome(nome));
+    }
+
     public ResponseEntity<CardsDTO> buscar(Long entregaId) {
         return cardsRepository.findById(entregaId)
                 .map(entrega -> {

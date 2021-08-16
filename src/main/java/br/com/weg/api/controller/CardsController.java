@@ -42,6 +42,11 @@ public class CardsController {
         return solicitacaoCardsService.filtroStatus(status);
     }
 
+    @GetMapping("/filtro/pesquisa/{nome}")
+    public List<CardsDTO> filtroNome(@PathVariable String nome) {
+        return solicitacaoCardsService.filtroNome(nome);
+    }
+
     @GetMapping("/{cardsId}")
     public ResponseEntity<CardsDTO> buscar(@PathVariable Long cardsId) {
         return solicitacaoCardsService.buscar(cardsId);

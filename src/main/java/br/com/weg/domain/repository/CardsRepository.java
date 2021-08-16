@@ -12,4 +12,6 @@ public interface CardsRepository extends JpaRepository<Cards, Long> {
 
     List<Cards> findByStatus(String status);
 
+    List<Cards> findByNome(String nome);
+
 }

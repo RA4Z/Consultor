@@ -19,9 +19,7 @@ public class CardsInputDTO {
     PessoaIdInputDTO pessoa;
 
     @NotNull
-    @Valid
-    InfoInputDTO infoInputDTO;
+    String nome;
 
-    @NotNull
-    BigDecimal taxa;
+
 }

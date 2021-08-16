@@ -1,10 +1,11 @@
 package br.com.weg.api.model;
 
-import br.com.weg.domain.model.Info;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+
+import javax.persistence.Column;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -12,7 +13,11 @@ import lombok.experimental.FieldDefaults;
 public class CardsDTO {
 
     Long id;
-    Info info;
+    String secao;
+    String nome;
+    String dataInicio;
+    String dataEstimada;
+    int horas;
     String status;
 
 }
