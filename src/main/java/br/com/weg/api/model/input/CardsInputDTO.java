@@ -20,7 +20,7 @@ public class CardsInputDTO {
 
     @NotNull
     @Valid
-    DestinatarioInputDTO destinatario;
+    InfoInputDTO infoInputDTO;
 
     @NotNull
     BigDecimal taxa;

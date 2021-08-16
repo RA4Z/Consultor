@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-public class DestinatarioDTO {
+public class InfoDTO {
 
     String secao;
     String nome;

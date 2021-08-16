@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 @Getter
 @Setter
 @Embeddable
-public class Destinatario {
+public class Info {
 
     @Column(name = "card_secao")
     String secao;

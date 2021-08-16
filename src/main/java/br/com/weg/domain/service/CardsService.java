@@ -13,13 +13,6 @@ public class CardsService {
 
     private CardsRepository cardsRepository;
 
-    @Transactional
-    public void finalizar(Long entregaId){
-        Cards cards = buscaCard(entregaId);
-
-        cardsRepository.save(cards);
-    }
-
     public Cards buscaCard(Long entregaId){
         return cardsRepository.findById(entregaId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Card não encontrado."));

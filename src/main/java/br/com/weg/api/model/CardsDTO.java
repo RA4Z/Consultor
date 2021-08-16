@@ -1,5 +1,6 @@
 package br.com.weg.api.model;
 
+import br.com.weg.domain.model.Info;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,8 +12,7 @@ import lombok.experimental.FieldDefaults;
 public class CardsDTO {
 
     Long id;
-    PessoaDTO pessoa;
-    DestinatarioDTO destinatario;
+    Info info;
     String status;
 
 }

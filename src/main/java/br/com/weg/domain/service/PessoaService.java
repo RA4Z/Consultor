@@ -1,74 +1,19 @@
 package br.com.weg.domain.service;
 
 
-import br.com.weg.api.assembler.PessoaAssembler;
-import br.com.weg.api.model.PessoaDTO;
 import br.com.weg.domain.exception.NegocioException;
 import br.com.weg.domain.model.Pessoa;
 import br.com.weg.domain.repository.PessoaRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @AllArgsConstructor
 @Service
 public class PessoaService {
 
     private PessoaRepository pessoaRepository;
-    private PessoaAssembler pessoaAssembler;
-
-    @Transactional
-    public Pessoa cadastrar(Pessoa pessoa){
-
-        return pessoaRepository.save(pessoa);
-    }
-
-    @Transactional
-    public ResponseEntity<Object> excluir(Long pessoaId){
-
-        if(!pessoaRepository.existsById(pessoaId)){
-            return ResponseEntity.notFound().build();
-        }
-
-        pessoaRepository.deleteById(pessoaId);
-        return ResponseEntity.ok(pessoaId);
-    }
-
-    public List<PessoaDTO> listar(){
-        return pessoaAssembler.toCollectionModel(pessoaRepository.findAll());
-    }
 
     public Pessoa buscar(Long pessoaId){
         return pessoaRepository.findById(pessoaId).orElseThrow(() -> new NegocioException("Pessoa não encontrada."));
-    }
-
-    public ResponseEntity<PessoaDTO> pesquisa(Long pessoaId){
-        return pessoaRepository.findById(pessoaId).map(entrega ->
-                ResponseEntity.ok(pessoaAssembler.toModel(entrega))
-        ).orElse(ResponseEntity.notFound().build());
-    }
-
-    public ResponseEntity<Pessoa> editar(@Valid @PathVariable Long pessoaId, @RequestBody Pessoa pessoa) {
-
-        if(!pessoaRepository.existsById(pessoaId)){
-            return ResponseEntity.notFound().build();
-        }
-        pessoa.setId(pessoaId);
-        pessoa = pessoaRepository.save(pessoa);
-
-        return ResponseEntity.ok(pessoa);
-    }
-
-    public List<PessoaDTO> listarPorNome(String pessoaNome){
-        return pessoaAssembler.toCollectionModel(pessoaRepository.findByNome(pessoaNome));
-    }
-    public List<PessoaDTO> listarNomeContaining(String nomeContaining){
-        return pessoaAssembler.toCollectionModel(pessoaRepository.findByNomeContaining(nomeContaining));
     }
 }

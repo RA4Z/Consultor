@@ -32,7 +32,7 @@ public class Cards {
     @Valid
     @NotNull
     @Embedded
-    private Destinatario destinatario;
+    private Info info;
 
     @Column(name = "card_status")
     private String status;
@@ -47,7 +47,7 @@ public class Cards {
         apontamento.setDataRegistro(dataRegistro);
         apontamento.setCards(this);
 
-        destinatario.setHoras(destinatario.getHoras()+horas);
+        info.setHoras(info.getHoras()+horas);
 
         this.getApontamentos().add(apontamento);
 
