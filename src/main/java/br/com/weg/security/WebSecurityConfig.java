@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/cards").hasRole("CONSULTOR")
                 .antMatchers(HttpMethod.PUT, "/cards/{cardId}").hasRole("CONSULTOR")
+                .antMatchers(HttpMethod.GET, "/usuario/{email}").hasRole("CONSULTOR")
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

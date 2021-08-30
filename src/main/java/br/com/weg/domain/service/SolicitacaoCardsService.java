@@ -2,8 +2,6 @@ package br.com.weg.domain.service;
 
 import br.com.weg.api.assembler.CardsAssembler;
 import br.com.weg.api.model.CardsDTO;
-import br.com.weg.domain.model.Cards;
-import br.com.weg.domain.model.Pessoa;
 import br.com.weg.domain.repository.CardsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +13,10 @@ import java.util.List;
 @Service
 public class SolicitacaoCardsService {
 
-    private PessoaService pessoaService;
     private CardsRepository cardsRepository;
     private CardsAssembler cardsAssembler;
 
-    public Cards solicitar(Cards cards) {
-        Pessoa pessoa = pessoaService.buscar(cards.getPessoa().getId());
-        cards.setPessoa(pessoa);
-
-        return cardsRepository.save(cards);
-    }
+ 
     public List<CardsDTO> listar() {
         return cardsAssembler.toCollectionModel(cardsRepository.findAll());
     }

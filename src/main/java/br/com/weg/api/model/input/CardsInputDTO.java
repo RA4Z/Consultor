@@ -15,10 +15,6 @@ import java.math.BigDecimal;
 public class CardsInputDTO {
 
     @NotNull
-    @Valid
-    PessoaIdInputDTO pessoa;
-
-    @NotNull
     String nome;
 
 

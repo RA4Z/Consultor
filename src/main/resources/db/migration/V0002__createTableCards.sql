@@ -1,6 +1,5 @@
 CREATE TABLE cards(
     id bigint not null auto_increment,
-    pessoa_id bigint not null,
 
     card_secao varchar(60),
     card_nome varchar(255),
@@ -11,6 +10,3 @@ CREATE TABLE cards(
 
     PRIMARY KEY (id)
 );
-
-ALTER TABLE cards ADD CONSTRAINT fk_cards_pessoa
-FOREIGN KEY (pessoa_id) REFERENCES pessoa (id);

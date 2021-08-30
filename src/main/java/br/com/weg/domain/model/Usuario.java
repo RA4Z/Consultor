@@ -18,8 +18,10 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
     private String email;
     private String senha;
+    private String telefone;
 
     @ManyToMany
     @JoinTable(name = "role_usuarios",
