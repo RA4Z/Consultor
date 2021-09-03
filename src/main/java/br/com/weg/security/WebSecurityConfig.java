@@ -27,9 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/cards").hasRole("CONSULTOR")
-                .antMatchers(HttpMethod.PUT, "/cards/{cardId}").hasRole("CONSULTOR")
+                .antMatchers(HttpMethod.POST, "/cards/{cardId}/apontamento").hasRole("CONSULTOR")
                 .antMatchers(HttpMethod.GET, "/usuario/{email}").permitAll()
+                .antMatchers(HttpMethod.GET, "/cards/*").hasRole("CONSULTOR")
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

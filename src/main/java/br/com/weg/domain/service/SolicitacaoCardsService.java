@@ -6,6 +6,7 @@ import br.com.weg.domain.repository.CardsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -35,5 +36,9 @@ public class SolicitacaoCardsService {
                     return ResponseEntity.ok(cardsAssembler.toModel(entrega));
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    public List<CardsDTO> listarPorUsuario(@PathVariable Long usuarioId) {
+        return cardsAssembler.toCollectionModel(cardsRepository.findByUsuarioId(usuarioId));
     }
 }

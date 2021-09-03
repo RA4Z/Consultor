@@ -34,4 +34,10 @@ public class CardsController {
     public ResponseEntity<CardsDTO> buscar(@PathVariable Long cardsId) {
         return solicitacaoCardsService.buscar(cardsId);
     }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public List<CardsDTO> listarPorUsuario(@PathVariable Long usuarioId) {
+        return solicitacaoCardsService.listarPorUsuario(usuarioId);
+    }
+
 }
