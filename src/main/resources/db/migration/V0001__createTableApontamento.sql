@@ -3,6 +3,7 @@ CREATE TABLE apontamento(
     cards_id bigint not null,
     horas int not null,
     data_registro text not null,
+    descricao text not null,
     primary key (id)
 );
 

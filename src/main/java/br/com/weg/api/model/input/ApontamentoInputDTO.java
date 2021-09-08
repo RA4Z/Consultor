@@ -9,4 +9,5 @@ public class ApontamentoInputDTO {
 
     private String dataRegistro;
     private int horas;
+    private String descricao;
 }

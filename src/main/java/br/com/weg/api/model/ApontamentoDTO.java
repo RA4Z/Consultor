@@ -10,5 +10,6 @@ public class ApontamentoDTO {
     private Long id;
     private int horas;
     private String dataRegistro;
+    private String descricao;
 
 }

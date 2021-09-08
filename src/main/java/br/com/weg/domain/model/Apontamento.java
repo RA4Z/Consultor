@@ -21,4 +21,6 @@ public class Apontamento {
 
     private String dataRegistro;
 
+    private String descricao;
+
 }

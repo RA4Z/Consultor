@@ -6,7 +6,7 @@ import br.com.weg.domain.model.Cards;
 import br.com.weg.domain.model.Apontamento;
 import br.com.weg.api.model.ApontamentoDTO;
 import br.com.weg.domain.service.CardsService;
-import br.com.weg.domain.service.OcorrenciaService;
+import br.com.weg.domain.service.ApontamentoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +20,14 @@ import java.util.List;
 public class ApontamentoController {
 
     private CardsService cardsService;
-    private OcorrenciaService ocorrenciaService;
+    private ApontamentoService apontamentoService;
     private ApontamentosAssembler apontamentosAssembler;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApontamentoDTO registrar(@PathVariable Long cardsId, @Valid @RequestBody ApontamentoInputDTO apontamentoInputDTO){
-        Apontamento apontamentoRegistrada = ocorrenciaService.registrar(cardsId, apontamentoInputDTO.getHoras(),
-                apontamentoInputDTO.getDataRegistro());
+        Apontamento apontamentoRegistrada = apontamentoService.registrar(cardsId, apontamentoInputDTO.getHoras(),
+                apontamentoInputDTO.getDataRegistro(), apontamentoInputDTO.getDescricao());
         return apontamentosAssembler.toModel(apontamentoRegistrada);
     }
 

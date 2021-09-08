@@ -8,14 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
-public class OcorrenciaService {
+public class ApontamentoService {
 
     private CardsService cardsService;
 
     @Transactional
-    public Apontamento registrar(Long entregaId, int horas, String dataRegistro){
-        Cards cards = cardsService.buscaCard(entregaId);
+    public Apontamento registrar(Long cardId, int horas, String dataRegistro, String descricao){
+        Cards cards = cardsService.buscaCard(cardId);
 
-        return cards.adicionarOcorrencia(horas, dataRegistro);
+        return cards.adicionarApontamento(horas, dataRegistro, descricao);
     }
 }
