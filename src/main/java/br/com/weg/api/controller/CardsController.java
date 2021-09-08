@@ -1,7 +1,7 @@
 package br.com.weg.api.controller;
 
 import br.com.weg.api.model.CardsDTO;
-import br.com.weg.domain.service.SolicitacaoCardsService;
+import br.com.weg.domain.service.CardsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,31 +13,31 @@ import java.util.List;
 @RequestMapping("/cards")
 public class CardsController {
 
-    private SolicitacaoCardsService solicitacaoCardsService;
+    private CardsService cardsService;
 
     @GetMapping
     public List<CardsDTO> listar() {
-        return solicitacaoCardsService.listar();
+        return cardsService.listar();
     }
 
     @GetMapping("/filtro/{status}")
     public List<CardsDTO> filtroStatus(@PathVariable String status) {
-        return solicitacaoCardsService.filtroStatus(status);
+        return cardsService.filtroStatus(status);
     }
 
     @GetMapping("/filtro/pesquisa/{nome}")
     public List<CardsDTO> filtroNome(@PathVariable String nome) {
-        return solicitacaoCardsService.filtroNome(nome);
+        return cardsService.filtroNome(nome);
     }
 
     @GetMapping("/{cardsId}")
     public ResponseEntity<CardsDTO> buscar(@PathVariable Long cardsId) {
-        return solicitacaoCardsService.buscar(cardsId);
+        return cardsService.buscar(cardsId);
     }
 
     @GetMapping("/usuario/{usuarioId}")
     public List<CardsDTO> listarPorUsuario(@PathVariable Long usuarioId) {
-        return solicitacaoCardsService.listarPorUsuario(usuarioId);
+        return cardsService.listarPorUsuario(usuarioId);
     }
 
 }
