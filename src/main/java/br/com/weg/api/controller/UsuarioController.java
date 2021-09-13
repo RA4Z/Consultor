@@ -1,5 +1,6 @@
 package br.com.weg.api.controller;
 
+import br.com.weg.api.model.CardsDTO;
 import br.com.weg.api.model.UsuarioDTO;
 import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.service.UsuarioService;
@@ -17,6 +18,7 @@ import java.util.List;
 public class UsuarioController {
 
     UsuarioService usuarioService;
+    CardsController cardsController;
 
     @GetMapping
     public List<UsuarioDTO> listar() {
@@ -28,4 +30,12 @@ public class UsuarioController {
         return usuarioService.listarEmail(email);
     }
 
+    @GetMapping("/cards/{email}")
+    public List<CardsDTO> usarEmail(@PathVariable String email) {
+        List<UsuarioDTO> usuario = usuarioService.listarEmail(email);
+        Usuario user = new Usuario();
+        user.setId(usuario.get(0).getId());
+
+        return cardsController.listarPorUsuario(user.getId());
+    }
 }

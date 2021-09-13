@@ -23,13 +23,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final ImplementsUserDetailsService implementsUserDetailsService;
     private final JWTRequestFilter jwtRequestFilter;
 
+    private static final String[] AUTH_LIST = {
+            "/cards",
+            "/cards/usuario/{usuarioId}",
+            "/usuario/cards/{email}"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/cards/{cardId}/apontamento").hasRole("CONSULTOR")
                 .antMatchers(HttpMethod.GET, "/usuario/{email}").permitAll()
-                .antMatchers(HttpMethod.GET, "/cards/*").hasRole("CONSULTOR")
+                .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
