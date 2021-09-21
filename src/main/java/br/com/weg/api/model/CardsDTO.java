@@ -18,5 +18,7 @@ public class CardsDTO {
     String dataEstimada;
     int horas;
     String status;
+    int horasEnviado;
+    int horasAprovado;
 
 }

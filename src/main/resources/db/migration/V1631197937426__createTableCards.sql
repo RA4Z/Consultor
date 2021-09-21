@@ -8,6 +8,8 @@ CREATE TABLE cards
     card_datainicio   VARCHAR(50),
     card_dataestimada VARCHAR(50),
     card_horas        INT NOT NULL,
+    horas_enviado     INT,
+    horas_aprovado    INT,
     PRIMARY KEY (id)
 );
 

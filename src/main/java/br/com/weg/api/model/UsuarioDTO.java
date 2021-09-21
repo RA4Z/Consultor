@@ -8,6 +8,7 @@ import lombok.Setter;
 public class UsuarioDTO {
 
     private long id;
+    private long idFornecedor;
     private String nome;
     private String email;
     private String senha;
