@@ -26,7 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] AUTH_LIST = {
             "/cards",
             "/cards/usuario/{usuarioId}",
-            "/usuario/cards/{email}"
+            "/usuario/cards/{email}",
+            "/cards/filtro/{status}",
+            "/cards/{cardId}/apontamento",
+            "/usuario/{email}"
     };
 
     @Override
@@ -34,8 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/cards/{cardId}/apontamento").permitAll()
-                .antMatchers(HttpMethod.GET, "/cards/{cardId}/apontamento").permitAll()
-                .antMatchers(HttpMethod.GET, "/usuario/{email}").permitAll()
                 .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
