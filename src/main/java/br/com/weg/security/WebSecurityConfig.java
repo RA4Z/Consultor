@@ -24,20 +24,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final JWTRequestFilter jwtRequestFilter;
 
     private static final String[] AUTH_LIST = {
-            "/cards",
-            "/cards/usuario/{usuarioId}",
-            "/usuario/cards/{email}",
-            "/cards/filtro/{status}",
-            "/cards/{cardId}/apontamento",
-            "/usuario/{email}"
+            "/cards/*",
+            "/usuario/*"
     };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/cards/{cardId}/apontamento").permitAll()
-                .antMatchers(HttpMethod.GET, AUTH_LIST).permitAll()
+                .antMatchers(HttpMethod.GET, AUTH_LIST).hasAnyAuthority("role_consultor")
+                .antMatchers(HttpMethod.POST, AUTH_LIST).hasAnyAuthority("role_consultor")
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
