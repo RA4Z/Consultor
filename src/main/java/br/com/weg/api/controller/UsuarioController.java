@@ -2,8 +2,8 @@ package br.com.weg.api.controller;
 
 import br.com.weg.api.model.CardsDTO;
 import br.com.weg.api.model.UsuarioDTO;
-import br.com.weg.domain.model.Cards;
 import br.com.weg.domain.model.Usuario;
+import br.com.weg.domain.service.CardsService;
 import br.com.weg.domain.service.UsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +21,7 @@ public class UsuarioController {
 
     UsuarioService usuarioService;
     CardsController cardsController;
+    CardsService cardsService;
 
     @GetMapping
     public List<UsuarioDTO> listar() {
@@ -47,6 +48,15 @@ public class UsuarioController {
         user.setId(usuario.get(0).getId());
         List<CardsDTO> cardsDTOS = cardsController.listarPorUsuario(user.getId());
         return cardsDTOS.stream().filter(cards2 -> cards2.getStatus().equalsIgnoreCase(filtro))
+                .collect(Collectors.toList());
+    }
+    @GetMapping("/texto/{email}/{nome}")
+    public List<CardsDTO> filtroNome(@PathVariable String email,@PathVariable String nome) {
+        List<UsuarioDTO> usuario = usuarioService.listarEmail(email);
+        Usuario user = new Usuario();
+        user.setId(usuario.get(0).getId());
+        List<CardsDTO> cardsDTOS = cardsController.listarPorUsuario(user.getId());
+        return cardsDTOS.stream().filter(cards2 -> cards2.getNome().equalsIgnoreCase(nome))
                 .collect(Collectors.toList());
     }
 }
