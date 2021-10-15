@@ -25,7 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_LIST = {
             "/cards/*",
-            "/usuario/*"
+            "/usuario/*",
+            "/notificacao/*"
     };
 
     @Override
@@ -34,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, AUTH_LIST).hasAnyAuthority("role_consultor")
                 .antMatchers(HttpMethod.POST, AUTH_LIST).hasAnyAuthority("role_consultor")
+                .antMatchers(HttpMethod.DELETE, "/notificacao/*").hasAnyAuthority("role_consultor")
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()

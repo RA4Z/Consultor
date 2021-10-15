@@ -1,15 +1,14 @@
 package br.com.weg.api.controller;
 
 import br.com.weg.api.model.CardsDTO;
+import br.com.weg.api.model.NotificacaoDTO;
 import br.com.weg.api.model.UsuarioDTO;
 import br.com.weg.domain.model.Usuario;
-import br.com.weg.domain.service.CardsService;
+import br.com.weg.domain.service.NotificacaoService;
 import br.com.weg.domain.service.UsuarioService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +18,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    UsuarioService usuarioService;
-    CardsController cardsController;
-    CardsService cardsService;
+    private UsuarioService usuarioService;
+    private CardsController cardsController;
+    private NotificacaoController notificacaoController;
+    private NotificacaoService notificacaoService;
 
     @GetMapping
     public List<UsuarioDTO> listar() {
@@ -50,6 +50,15 @@ public class UsuarioController {
         return cardsDTOS.stream().filter(cards2 -> cards2.getStatus().equalsIgnoreCase(filtro))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/notificacao/{email}")
+    public List<NotificacaoDTO> usarEmailNotifica(@PathVariable String email) {
+        List<UsuarioDTO> usuario = usuarioService.listarEmail(email);
+        Usuario user = new Usuario();
+        user.setId(usuario.get(0).getId());
+
+        return notificacaoController.listarPorUsuario(user.getId());
+    }
     @GetMapping("/texto/{email}/{nome}")
     public List<CardsDTO> filtroNome(@PathVariable String email,@PathVariable String nome) {
         List<UsuarioDTO> usuario = usuarioService.listarEmail(email);
@@ -59,4 +68,5 @@ public class UsuarioController {
         return cardsDTOS.stream().filter(cards2 -> cards2.getNome().equalsIgnoreCase(nome))
                 .collect(Collectors.toList());
     }
+
 }

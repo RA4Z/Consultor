@@ -14,5 +14,4 @@ CREATE TABLE cards
 );
 
 ALTER TABLE cards
-    ADD CONSTRAINT fk_cards_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (
-                                                                                 id);
+    ADD CONSTRAINT fk_cards_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id);
