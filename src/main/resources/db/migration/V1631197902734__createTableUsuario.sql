@@ -8,3 +8,5 @@ CREATE TABLE usuario
     telefone VARCHAR(45) NOT NULL,
     PRIMARY KEY (id)
 );
+
+INSERT INTO usuario VALUES (1,1,"Consultor","consultor@gmail.com","$2a$10$wXtvqXV4qqnArUkRWiaYd.flZcZTcRecCxMlRdg4YC9Y7YtTVJcQq","(47) 4002-8922");
