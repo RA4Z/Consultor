@@ -56,9 +56,11 @@ public class Cards {
     @OneToMany(mappedBy = "cards", cascade = CascadeType.ALL)
     private List<Apontamento> apontamentos = new ArrayList<>();
 
-    public Apontamento adicionarApontamento(int horas, String dataRegistro, String descricao){
+    public Apontamento adicionarApontamento(int horas, String dataRegistro, String descricao, int horaInicial, int horaFinal){
         Apontamento apontamento = new Apontamento();
 
+        apontamento.setHoraInicial(horaInicial);
+        apontamento.setHoraFinal(horaFinal);
         apontamento.setHoras(horas);
         apontamento.setDataRegistro(dataRegistro);
         apontamento.setDescricao(descricao);

@@ -17,6 +17,10 @@ public class Apontamento {
     @ManyToOne
     private Cards cards;
 
+    private int horaInicial;
+
+    private int horaFinal;
+
     private int horas;
 
     private String dataRegistro;

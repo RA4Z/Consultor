@@ -27,7 +27,8 @@ public class ApontamentoController {
     @ResponseStatus(HttpStatus.CREATED)
     public ApontamentoDTO registrar(@PathVariable Long cardsId, @Valid @RequestBody ApontamentoInputDTO apontamentoInputDTO){
         Apontamento apontamentoRegistrada = apontamentoService.registrar(cardsId, apontamentoInputDTO.getHoras(),
-                apontamentoInputDTO.getDataRegistro(), apontamentoInputDTO.getDescricao());
+                apontamentoInputDTO.getDataRegistro(), apontamentoInputDTO.getDescricao(), apontamentoInputDTO.getHoraInicial(),
+                apontamentoInputDTO.getHoraFinal());
         return apontamentosAssembler.toModel(apontamentoRegistrada);
     }
 

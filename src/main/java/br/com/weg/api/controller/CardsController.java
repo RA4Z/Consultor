@@ -15,21 +15,6 @@ public class CardsController {
 
     private CardsService cardsService;
 
-    @GetMapping
-    public List<CardsDTO> listar() {
-        return cardsService.listar();
-    }
-
-    @GetMapping("/filtro/{status}")
-    public List<CardsDTO> filtroStatus(@PathVariable String status) {
-        return cardsService.filtroStatus(status);
-    }
-
-    @GetMapping("/filtro/pesquisa/{nome}")
-    public List<CardsDTO> filtroNome(@PathVariable String nome) {
-        return cardsService.filtroNome(nome);
-    }
-
     @GetMapping("/{cardsId}")
     public ResponseEntity<CardsDTO> buscar(@PathVariable Long cardsId) {
         return cardsService.buscar(cardsId);

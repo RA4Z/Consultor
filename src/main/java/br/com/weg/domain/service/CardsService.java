@@ -18,18 +18,9 @@ public class CardsService {
 
     private CardsRepository cardsRepository;
     private CardsAssembler cardsAssembler;
-
  
     public List<CardsDTO> listar() {
         return cardsAssembler.toCollectionModel(cardsRepository.findAll());
-    }
-
-    public List<CardsDTO> filtroStatus(String status) {
-        return cardsAssembler.toCollectionModel(cardsRepository.findByStatus(status));
-    }
-
-    public List<CardsDTO> filtroNome(String nome) {
-        return cardsAssembler.toCollectionModel(cardsRepository.findByNome(nome));
     }
 
     public ResponseEntity<CardsDTO> buscar(Long entregaId) {
@@ -43,8 +34,8 @@ public class CardsService {
     public List<CardsDTO> listarPorUsuario(@PathVariable Long usuarioId) {
         return cardsAssembler.toCollectionModel(cardsRepository.findByUsuarioId(usuarioId));
     }
-    public Cards buscaCard(Long entregaId){
-        return cardsRepository.findById(entregaId)
+    public Cards buscaCard(Long cardId){
+        return cardsRepository.findById(cardId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Card não encontrado."));
     }
 }

@@ -7,7 +7,6 @@ import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.service.NotificacaoService;
 import br.com.weg.domain.service.UsuarioService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

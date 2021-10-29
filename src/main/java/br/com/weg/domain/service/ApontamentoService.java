@@ -13,9 +13,9 @@ public class ApontamentoService {
     private CardsService cardsService;
 
     @Transactional
-    public Apontamento registrar(Long cardId, int horas, String dataRegistro, String descricao){
+    public Apontamento registrar(Long cardId, int horas, String dataRegistro, String descricao, int horaInicial, int horaFinal){
         Cards cards = cardsService.buscaCard(cardId);
 
-        return cards.adicionarApontamento(horas, dataRegistro, descricao);
+        return cards.adicionarApontamento(horas, dataRegistro, descricao, horaInicial, horaFinal);
     }
 }
