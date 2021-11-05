@@ -7,7 +7,7 @@ CREATE TABLE cards
     card_status       VARCHAR(30),
     card_datainicio   DATE,
     card_dataestimada DATE,
-    card_horas        INT NOT NULL,
+    card_horas        double NOT NULL,
     horas_enviado     INT,
     horas_aprovado    INT,
     PRIMARY KEY (id)

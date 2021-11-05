@@ -12,12 +12,12 @@ public class ApontamentoInputDTO {
 
     @NotBlank
     private String dataRegistro;
+    @NotBlank
+    private String horaInicial;
+    @NotBlank
+    private String horaFinal;
     @NotNull
-    private int horaInicial;
-    @NotNull
-    private int horaFinal;
-    @NotNull
-    private int horas;
+    private double horas;
     @NotBlank
     private String descricao;
 }

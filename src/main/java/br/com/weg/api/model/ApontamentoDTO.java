@@ -8,9 +8,9 @@ import lombok.Setter;
 public class ApontamentoDTO {
 
     private Long id;
-    private int horaInicial;
-    private int horaFinal;
-    private int horas;
+    private String horaInicial;
+    private String horaFinal;
+    private double horas;
     private String dataRegistro;
     private String descricao;
 

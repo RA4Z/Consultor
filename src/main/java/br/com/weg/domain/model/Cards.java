@@ -11,6 +11,7 @@ import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 
 @Getter
 @Setter
@@ -42,7 +43,7 @@ public class Cards {
     String dataEstimada;
 
     @Column(name = "card_horas")
-    int horas;
+    double horas;
 
     @Column(name = "card_status")
     private String status;
@@ -56,12 +57,16 @@ public class Cards {
     @OneToMany(mappedBy = "cards", cascade = CascadeType.ALL)
     private List<Apontamento> apontamentos = new ArrayList<>();
 
-    public Apontamento adicionarApontamento(int horas, String dataRegistro, String descricao, int horaInicial, int horaFinal){
+    public Apontamento adicionarApontamento(double horas, String dataRegistro, String descricao, String horaInicial, String horaFinal){
+        DecimalFormat df = new DecimalFormat("##.##");
         Apontamento apontamento = new Apontamento();
+        String ayuda = df.format(horas);
+        ayuda = ayuda.replaceAll(",", ".");
+        double hora = Double.parseDouble(ayuda);
 
         apontamento.setHoraInicial(horaInicial);
         apontamento.setHoraFinal(horaFinal);
-        apontamento.setHoras(horas);
+        apontamento.setHoras(hora);
         apontamento.setDataRegistro(dataRegistro);
         apontamento.setDescricao(descricao);
         apontamento.setCards(this);
