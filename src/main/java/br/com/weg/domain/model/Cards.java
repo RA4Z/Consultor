@@ -31,19 +31,22 @@ public class Cards {
     private Usuario usuario;
 
     @Column(name = "card_secao")
-    String secao;
+    private String secao;
 
     @Column(name = "card_nome")
-    String nome;
+    private String nome;
 
     @Column(name = "card_datainicio")
-    String dataInicio;
+    private String dataInicio;
 
     @Column(name = "card_dataestimada")
-    String dataEstimada;
+    private String dataEstimada;
+
+    @Column(name = "card_tempolimite")
+    private int tempoLimite;
 
     @Column(name = "card_horas")
-    double horas;
+    private double horas;
 
     @Column(name = "card_status")
     private String status;
@@ -58,23 +61,29 @@ public class Cards {
     private List<Apontamento> apontamentos = new ArrayList<>();
 
     public Apontamento adicionarApontamento(double horas, String dataRegistro, String descricao, String horaInicial, String horaFinal){
-        DecimalFormat df = new DecimalFormat("##.##");
-        Apontamento apontamento = new Apontamento();
-        String ayuda = df.format(horas);
-        ayuda = ayuda.replaceAll(",", ".");
-        double hora = Double.parseDouble(ayuda);
+        if(this.getHoras()+horas < this.tempoLimite+1 && horas < 11) {
 
-        apontamento.setHoraInicial(horaInicial);
-        apontamento.setHoraFinal(horaFinal);
-        apontamento.setHoras(hora);
-        apontamento.setDataRegistro(dataRegistro);
-        apontamento.setDescricao(descricao);
-        apontamento.setCards(this);
+            DecimalFormat df = new DecimalFormat("##.##");
+            Apontamento apontamento = new Apontamento();
+            String ayuda = df.format(horas);
+            ayuda = ayuda.replaceAll(",", ".");
+            double hora = Double.parseDouble(ayuda);
 
-        this.setHoras(this.getHoras()+horas);
+            apontamento.setHoraInicial(horaInicial);
+            apontamento.setHoraFinal(horaFinal);
+            apontamento.setHoras(hora);
+            apontamento.setDataRegistro(dataRegistro);
+            apontamento.setDescricao(descricao);
+            apontamento.setCards(this);
 
-        this.getApontamentos().add(apontamento);
+            this.setHoras(this.getHoras() + horas);
 
-        return apontamento;
+            this.getApontamentos().add(apontamento);
+
+            return apontamento;
+        }
+        else{
+            return null;
+        }
     }
 }
