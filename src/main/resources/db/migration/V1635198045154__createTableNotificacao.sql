@@ -12,3 +12,5 @@ create table notificacao (
 
     ALTER TABLE notificacao
     ADD CONSTRAINT fk_notificacao_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id);
+
+    INSERT INTO notificacao VALUES(1,1,1,"Alerta","O sistema foi Inicializado com Sucesso.");
