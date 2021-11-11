@@ -16,6 +16,7 @@ public class CardsDTO {
     String nome;
     String dataInicio;
     String dataEstimada;
+    int tempoLimite;
     int horas;
     String status;
     int horasEnviado;
