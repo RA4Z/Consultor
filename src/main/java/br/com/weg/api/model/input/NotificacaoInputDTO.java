@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class NotificacaoInputDTO {
 
-    private Long idCard;
+    private Long usuarioId;
     private String nome;
     private String descricao;
 }

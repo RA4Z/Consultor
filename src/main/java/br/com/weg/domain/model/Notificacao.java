@@ -18,13 +18,8 @@ public class Notificacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-
-    @Valid
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_card")
-    private Cards cards;
 
     @Valid
     @ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)

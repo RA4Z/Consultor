@@ -1,7 +1,10 @@
 package br.com.weg.api.assembler;
 
+import br.com.weg.api.model.input.ApontamentoInputDTO;
+import br.com.weg.api.model.input.CardsInputDTO;
 import br.com.weg.domain.model.Apontamento;
 import br.com.weg.api.model.ApontamentoDTO;
+import br.com.weg.domain.model.Cards;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -24,4 +27,8 @@ public class ApontamentosAssembler {
                 .map((this::toModel))
                         .collect(Collectors.toList());
     }
+    public Apontamento toEntity(ApontamentoInputDTO apontamentoInputDTO) {
+        return modelMapper.map(apontamentoInputDTO, Apontamento.class);
+    }
+
 }

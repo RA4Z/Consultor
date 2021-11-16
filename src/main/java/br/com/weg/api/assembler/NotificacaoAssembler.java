@@ -1,6 +1,9 @@
 package br.com.weg.api.assembler;
 
 import br.com.weg.api.model.NotificacaoDTO;
+import br.com.weg.api.model.input.ApontamentoInputDTO;
+import br.com.weg.api.model.input.NotificacaoInputDTO;
+import br.com.weg.domain.model.Apontamento;
 import br.com.weg.domain.model.Notificacao;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -23,5 +26,8 @@ public class NotificacaoAssembler {
         return notificacoes.stream()
                 .map((this::toModel))
                 .collect(Collectors.toList());
+    }
+    public Notificacao toEntity(NotificacaoInputDTO notificacaoInputDTO) {
+        return modelMapper.map(notificacaoInputDTO, Notificacao.class);
     }
 }

@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, AUTH_LIST).hasAnyAuthority("role_consultor")
                 .antMatchers(HttpMethod.POST, AUTH_LIST).hasAnyAuthority("role_consultor")
+                .antMatchers(HttpMethod.PUT, AUTH_LIST).hasAnyAuthority("role_consultor")
                 .antMatchers(HttpMethod.DELETE, "/notificacao/*").hasAnyAuthority("role_consultor")
                 .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()

@@ -1,11 +1,15 @@
 package br.com.weg.api.controller;
 
+import br.com.weg.api.assembler.NotificacaoAssembler;
 import br.com.weg.api.model.NotificacaoDTO;
 import br.com.weg.api.model.UsuarioDTO;
+import br.com.weg.api.model.input.NotificacaoInputDTO;
+import br.com.weg.domain.model.Notificacao;
 import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.service.NotificacaoService;
 import br.com.weg.domain.service.UsuarioService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +23,13 @@ public class NotificacaoController {
 
     private NotificacaoService notificacaoService;
     private UsuarioService usuarioService;
+    private NotificacaoAssembler notificacaoAssembler;
 
     @GetMapping
     public List<NotificacaoDTO> listar() {
         return notificacaoService.listar();
     }
+
     @GetMapping("/usuario/{usuarioId}")
     public List<NotificacaoDTO> listarPorUsuario(@PathVariable Long usuarioId) {
         return notificacaoService.listarPorUsuario(usuarioId);
@@ -44,6 +50,16 @@ public class NotificacaoController {
         notificacaoService.excluirTudo(user.getId());
 
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public NotificacaoDTO cadastrar(@Valid @RequestBody NotificacaoInputDTO notificacaoInputDTO){
+        Notificacao novaNotificacao = notificacaoAssembler.toEntity(notificacaoInputDTO);
+
+        Notificacao notificacao = notificacaoService.cadastrar(novaNotificacao);
+
+        return notificacaoAssembler.toModel(notificacao);
     }
 
 }
