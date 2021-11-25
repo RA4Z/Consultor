@@ -61,7 +61,7 @@ public class Cards {
     private List<Apontamento> apontamentos = new ArrayList<>();
 
     public Apontamento adicionarApontamento(double horas, String dataRegistro, String descricao, String horaInicial, String horaFinal){
-        if(this.getHoras()+horas < this.tempoLimite+1 && horas < 11) {
+        if(this.getHoras()+horas < this.tempoLimite+1 && horas < 11 && this.getHorasEnviado()!=1) {
 
             DecimalFormat df = new DecimalFormat("##.##");
             Apontamento apontamento = new Apontamento();

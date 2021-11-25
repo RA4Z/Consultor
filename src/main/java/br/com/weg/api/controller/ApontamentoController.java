@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DecimalFormat;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,6 +23,7 @@ import java.util.List;
 public class ApontamentoController {
 
     private CardsService cardsService;
+    private CardsController cardsController;
     private ApontamentoService apontamentoService;
     private ApontamentosAssembler apontamentosAssembler;
     private ApontamentoRepository apontamentoRepository;
@@ -45,6 +47,12 @@ public class ApontamentoController {
     @PutMapping("/{apontamentoId}/editar")
     @ResponseStatus(HttpStatus.CREATED)
     public ApontamentoDTO editar(@Valid @RequestBody ApontamentoInputDTO apontamentoInputDTO, @PathVariable Long apontamentoId){
+        cardsService.editarHoras(apontamentoId, apontamentoInputDTO.getHoras());
+        DecimalFormat df = new DecimalFormat("##.##");
+        String ayuda = df.format(apontamentoInputDTO.getHoras());
+        ayuda = ayuda.replaceAll(",", ".");
+        double hora = Double.parseDouble(ayuda);
+        apontamentoInputDTO.setHoras(hora);
         Apontamento novoApontamento = apontamentosAssembler.toEntity(apontamentoInputDTO);
         ResponseEntity<Apontamento> apontamentoResponseEntity = apontamentoService.editar(apontamentoId, novoApontamento);
 
@@ -57,7 +65,7 @@ public class ApontamentoController {
         if(!apontamentoRepository.existsById(apontamentoId)){
             return ResponseEntity.notFound().build();
         }
-
+        cardsService.apagarHoras(apontamentoId);
         apontamentoService.excluir(apontamentoId);
 
         return ResponseEntity.noContent().build();

@@ -3,7 +3,10 @@ package br.com.weg.domain.service;
 import br.com.weg.api.assembler.NotificacaoAssembler;
 import br.com.weg.api.model.CardsDTO;
 import br.com.weg.api.model.NotificacaoDTO;
+import br.com.weg.domain.model.Apontamento;
+import br.com.weg.domain.model.Cards;
 import br.com.weg.domain.model.Notificacao;
+import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.repository.NotificacaoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,7 @@ public class NotificacaoService {
 
     private NotificacaoRepository notificacaoRepository;
     private NotificacaoAssembler notificacaoAssembler;
+    private UsuarioService usuarioService;
 
     public List<NotificacaoDTO> listar() {
         return notificacaoAssembler.toCollectionModel(notificacaoRepository.findAll());
@@ -44,11 +48,6 @@ public class NotificacaoService {
 
         notificacaoRepository.deleteByIdUsuario(usuarioId);
         return ResponseEntity.ok(usuarioId);
-    }
-
-    @Transactional
-    public Notificacao cadastrar(Notificacao notificacao){
-        return notificacaoRepository.save(notificacao);
     }
 
 }

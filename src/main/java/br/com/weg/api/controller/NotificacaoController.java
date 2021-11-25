@@ -1,9 +1,12 @@
 package br.com.weg.api.controller;
 
 import br.com.weg.api.assembler.NotificacaoAssembler;
+import br.com.weg.api.model.ApontamentoDTO;
 import br.com.weg.api.model.NotificacaoDTO;
 import br.com.weg.api.model.UsuarioDTO;
+import br.com.weg.api.model.input.ApontamentoInputDTO;
 import br.com.weg.api.model.input.NotificacaoInputDTO;
+import br.com.weg.domain.model.Apontamento;
 import br.com.weg.domain.model.Notificacao;
 import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.service.NotificacaoService;
@@ -50,16 +53,6 @@ public class NotificacaoController {
         notificacaoService.excluirTudo(user.getId());
 
         return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public NotificacaoDTO cadastrar(@Valid @RequestBody NotificacaoInputDTO notificacaoInputDTO){
-        Notificacao novaNotificacao = notificacaoAssembler.toEntity(notificacaoInputDTO);
-
-        Notificacao notificacao = notificacaoService.cadastrar(novaNotificacao);
-
-        return notificacaoAssembler.toModel(notificacao);
     }
 
 }

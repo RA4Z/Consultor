@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.Column;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -14,8 +15,9 @@ import java.math.BigDecimal;
 @Setter
 public class CardsInputDTO {
 
-    @NotNull
     String nome;
+    int horasEnviado;
+    int horasAprovado;
 
 
 }
