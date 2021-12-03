@@ -20,6 +20,5 @@ public class CardsDTO {
     int horas;
     String status;
     int horasEnviado;
-    int horasAprovado;
 
 }
