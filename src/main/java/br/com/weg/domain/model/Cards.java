@@ -54,9 +54,6 @@ public class Cards {
     @Column(name = "horas_enviado")
     private int horasEnviado;
 
-    @Column(name = "horas_aprovado")
-    private int horasAprovado;
-
     @OneToMany(mappedBy = "cards", cascade = CascadeType.ALL)
     private List<Apontamento> apontamentos = new ArrayList<>();
 
