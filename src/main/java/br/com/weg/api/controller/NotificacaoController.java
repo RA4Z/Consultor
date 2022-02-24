@@ -1,18 +1,11 @@
 package br.com.weg.api.controller;
 
-import br.com.weg.api.assembler.NotificacaoAssembler;
-import br.com.weg.api.model.ApontamentoDTO;
 import br.com.weg.api.model.NotificacaoDTO;
 import br.com.weg.api.model.UsuarioDTO;
-import br.com.weg.api.model.input.ApontamentoInputDTO;
-import br.com.weg.api.model.input.NotificacaoInputDTO;
-import br.com.weg.domain.model.Apontamento;
-import br.com.weg.domain.model.Notificacao;
 import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.service.NotificacaoService;
 import br.com.weg.domain.service.UsuarioService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +19,6 @@ public class NotificacaoController {
 
     private NotificacaoService notificacaoService;
     private UsuarioService usuarioService;
-    private NotificacaoAssembler notificacaoAssembler;
 
     @GetMapping
     public List<NotificacaoDTO> listar() {

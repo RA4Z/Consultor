@@ -1,8 +1,6 @@
 package br.com.weg.api.assembler;
 
-import br.com.weg.api.model.CardsDTO;
 import br.com.weg.api.model.UsuarioDTO;
-import br.com.weg.domain.model.Cards;
 import br.com.weg.domain.model.Usuario;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

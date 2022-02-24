@@ -1,12 +1,7 @@
 package br.com.weg.domain.service;
 
 import br.com.weg.api.assembler.NotificacaoAssembler;
-import br.com.weg.api.model.CardsDTO;
 import br.com.weg.api.model.NotificacaoDTO;
-import br.com.weg.domain.model.Apontamento;
-import br.com.weg.domain.model.Cards;
-import br.com.weg.domain.model.Notificacao;
-import br.com.weg.domain.model.Usuario;
 import br.com.weg.domain.repository.NotificacaoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +18,6 @@ public class NotificacaoService {
 
     private NotificacaoRepository notificacaoRepository;
     private NotificacaoAssembler notificacaoAssembler;
-    private UsuarioService usuarioService;
 
     public List<NotificacaoDTO> listar() {
         return notificacaoAssembler.toCollectionModel(notificacaoRepository.findAll());
@@ -33,21 +27,22 @@ public class NotificacaoService {
         return notificacaoAssembler.toCollectionModel(notificacaoRepository.findByUsuarioId(usuarioId));
     }
     @Transactional
-    public ResponseEntity<Object> excluir(Long notificacaoId){
+    public void excluir(Long notificacaoId){
 
         if(!notificacaoRepository.existsById(notificacaoId)){
-            return ResponseEntity.notFound().build();
+            ResponseEntity.notFound().build();
+            return;
         }
 
         notificacaoRepository.deleteById(notificacaoId);
-        return ResponseEntity.ok(notificacaoId);
+        ResponseEntity.ok(notificacaoId);
     }
 
     @Transactional
-    public ResponseEntity<Object> excluirTudo(Long usuarioId){
+    public void excluirTudo(Long usuarioId){
 
         notificacaoRepository.deleteByIdUsuario(usuarioId);
-        return ResponseEntity.ok(usuarioId);
+        ResponseEntity.ok(usuarioId);
     }
 
 }

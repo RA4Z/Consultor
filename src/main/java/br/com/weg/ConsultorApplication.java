@@ -9,7 +9,7 @@ public class ConsultorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConsultorApplication.class, args);
-		System.out.println("inicio");
+		System.out.println("Server is running");
 		System.out.println(new BCryptPasswordEncoder().encode("123456"));
 	}
 

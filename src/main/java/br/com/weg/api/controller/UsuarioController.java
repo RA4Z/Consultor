@@ -20,7 +20,6 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     private CardsController cardsController;
     private NotificacaoController notificacaoController;
-    private NotificacaoService notificacaoService;
 
     @GetMapping
     public List<UsuarioDTO> listar() {

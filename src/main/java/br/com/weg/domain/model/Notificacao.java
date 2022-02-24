@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 
 @Getter
 @Setter
@@ -22,7 +21,7 @@ public class Notificacao {
     private Long id;
 
     @Valid
-    @ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
+    @ConvertGroup(to = ValidationGroups.ClienteId.class)
     @NotNull
     @ManyToOne
     @JoinColumn(name = "usuario_id")

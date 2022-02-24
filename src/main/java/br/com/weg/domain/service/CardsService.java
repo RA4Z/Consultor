@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,15 +23,9 @@ public class CardsService {
     private CardsAssembler cardsAssembler;
     private ApontamentoRepository apontamentoRepository;
  
-    public List<CardsDTO> listar() {
-        return cardsAssembler.toCollectionModel(cardsRepository.findAll());
-    }
-
     public ResponseEntity<CardsDTO> buscar(Long entregaId) {
         return cardsRepository.findById(entregaId)
-                .map(entrega -> {
-                    return ResponseEntity.ok(cardsAssembler.toModel(entrega));
-                })
+                .map(entrega -> ResponseEntity.ok(cardsAssembler.toModel(entrega)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -43,21 +36,21 @@ public class CardsService {
         return cardsRepository.findById(cardId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Card não encontrado."));
     }
-    public ResponseEntity<Cards> apagarHoras(Long apontamentoId) {
+    public void apagarHoras(Long apontamentoId) {
         Apontamento apontamento = apontamentoRepository.getById(apontamentoId);
         Cards card = cardsRepository.getById(apontamento.getCards().getId());
         card.setHoras(card.getHoras() - apontamento.getHoras());
         card = cardsRepository.save(card);
-        return ResponseEntity.ok(card);
+        ResponseEntity.ok(card);
     }
 
-    public ResponseEntity<Cards> editarHoras(Long apontamentoId, double horasApontamento) {
+    public void editarHoras(Long apontamentoId, double horasApontamento) {
         Apontamento apontamento = apontamentoRepository.getById(apontamentoId);
         Cards card = cardsRepository.getById(apontamento.getCards().getId());
         card.setHoras(card.getHoras() - apontamento.getHoras());
         card.setHoras(card.getHoras() + horasApontamento);
         card = cardsRepository.save(card);
-        return ResponseEntity.ok(card);
+        ResponseEntity.ok(card);
     }
 
     public ResponseEntity<Cards> enviarHoras(@Valid @PathVariable Long cardsId) {

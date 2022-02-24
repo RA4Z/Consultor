@@ -1,7 +1,6 @@
 package br.com.weg.api.assembler;
 
 import br.com.weg.api.model.CardsDTO;
-import br.com.weg.api.model.input.CardsInputDTO;
 import br.com.weg.domain.model.Cards;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -26,8 +25,4 @@ public class CardsAssembler {
                 .collect(Collectors.toList());
     }
 
-    public Cards toEntity(CardsInputDTO cardsInputDTO) {
-        return modelMapper.map(cardsInputDTO, Cards.class);
-    }
-
-    }
+}

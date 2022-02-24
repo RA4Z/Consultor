@@ -23,7 +23,6 @@ import java.util.List;
 public class ApontamentoController {
 
     private CardsService cardsService;
-    private CardsController cardsController;
     private ApontamentoService apontamentoService;
     private ApontamentosAssembler apontamentosAssembler;
     private ApontamentoRepository apontamentoRepository;

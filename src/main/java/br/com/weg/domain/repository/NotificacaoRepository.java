@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface NotificacaoRepository extends JpaRepository<Notificacao, Long> {
 
-    List<Notificacao> findByNome(String nome);
-
     List<Notificacao> findByUsuarioId(Long usuarioId);
 
     @Transactional
